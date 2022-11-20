@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="18.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CAJA">
+          <Key>
+            <PropertyRef Name="NUMEROCAJA" />
+          </Key>
+          <Property Name="NUMEROCAJA" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'MERCADO.DETALLEFACTURA' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="DETALLEFACTURA">
+          <Property Name="NUMEROFACTURA" Type="number" Precision="38" Scale="0" />
+          <Property Name="PRODUCTOFRESCO" Type="number" Precision="38" Scale="0" />
+          <Property Name="PRODUCTONOFRESCO" Type="varchar2" MaxLength="13" />
+          <Property Name="CANTIDADVENTA" Type="number" Precision="38" Scale="0" />
+          <Property Name="PRECIO" Type="float" Precision="126" Scale="0" />
+        </EntityType>-->
+        <EntityType Name="FACTURA">
+          <Key>
+            <PropertyRef Name="NUMEROFACTURA" />
+          </Key>
+          <Property Name="NUMEROFACTURA" Type="number" Precision="38" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FECHA" Type="date" />
+          <Property Name="HORA" Type="date" />
+          <Property Name="SUBTOTAL" Type="float" Precision="126" Scale="0" Nullable="false" />
+          <Property Name="TOTAL" Type="float" Precision="126" Scale="0" Nullable="false" />
+          <Property Name="IDCAJA" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="IDUSUARIO" Type="number" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTOFRESCO">
+          <Key>
+            <PropertyRef Name="PLU" />
+          </Key>
+          <Property Name="PLU" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PESO" Type="float" Precision="126" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar2" MaxLength="255" />
+          <Property Name="PRECIO" Type="float" Precision="126" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTONOFRESCO">
+          <Key>
+            <PropertyRef Name="EAN" />
+          </Key>
+          <Property Name="EAN" Type="varchar2" MaxLength="13" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="varchar2" MaxLength="255" />
+          <Property Name="CANTIDAD" Type="number" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRECIO" Type="float" Precision="126" Scale="0" Nullable="false" />
+          <Property Name="AREA" Type="varchar2" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_NUMEROCAJA">
+          <End Role="CAJA" Type="Self.CAJA" Multiplicity="1" />
+          <End Role="FACTURA" Type="Self.FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAJA">
+              <PropertyRef Name="NUMEROCAJA" />
+            </Principal>
+            <Dependent Role="FACTURA">
+              <PropertyRef Name="IDCAJA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'MERCADO.DETALLEFACTURA', pero no se encuentra la tabla.
+        <Association Name="FK_NUMFACTURA" />-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'MERCADO.DETALLEFACTURA', pero no se encuentra la tabla.
+        <Association Name="FK_PRODUCTOFRESCO" />-->
+        <!--Errores durante la generación:
+error 6004: Una relación hace referencia a la tabla 'MERCADO.DETALLEFACTURA', pero no se encuentra la tabla.
+        <Association Name="FK_PRODUCTONOFRESCO" />-->
+        <Function Name="PROCEDURE_COMPRA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="MERCADO">
+          <Parameter Name="PCID" Type="varchar2" Mode="In" />
+          <Parameter Name="PCCANTIDAD" Type="number" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="CAJA" EntityType="Self.CAJA" Schema="MERCADO" store:Type="Tables" />
+          <EntitySet Name="FACTURA" EntityType="Self.FACTURA" Schema="MERCADO" store:Type="Tables" />
+          <EntitySet Name="PRODUCTOFRESCO" EntityType="Self.PRODUCTOFRESCO" Schema="MERCADO" store:Type="Tables" />
+          <EntitySet Name="PRODUCTONOFRESCO" EntityType="Self.PRODUCTONOFRESCO" Schema="MERCADO" store:Type="Tables" />
+          <AssociationSet Name="FK_NUMEROCAJA" Association="Self.FK_NUMEROCAJA">
+            <End Role="CAJA" EntitySet="CAJA" />
+            <End Role="FACTURA" EntitySet="FACTURA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CAJA">
+          <Key>
+            <PropertyRef Name="NUMEROCAJA" />
+          </Key>
+          <Property Name="NUMEROCAJA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="FACTURA" Relationship="Self.FK_NUMEROCAJA" FromRole="CAJA" ToRole="FACTURA" />
+        </EntityType>
+        <EntityType Name="FACTURA">
+          <Key>
+            <PropertyRef Name="NUMEROFACTURA" />
+          </Key>
+          <Property Name="NUMEROFACTURA" Type="Decimal" Precision="38" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FECHA" Type="DateTime" />
+          <Property Name="HORA" Type="DateTime" />
+          <Property Name="SUBTOTAL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="TOTAL" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="IDCAJA" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="IDUSUARIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <NavigationProperty Name="CAJA" Relationship="Self.FK_NUMEROCAJA" FromRole="FACTURA" ToRole="CAJA" />
+        </EntityType>
+        <EntityType Name="PRODUCTOFRESCO">
+          <Key>
+            <PropertyRef Name="PLU" />
+          </Key>
+          <Property Name="PLU" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PESO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PRECIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCTONOFRESCO">
+          <Key>
+            <PropertyRef Name="EAN" />
+          </Key>
+          <Property Name="EAN" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRIPCION" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CANTIDAD" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="PRECIO" Type="Decimal" Precision="38" Scale="0" Nullable="false" />
+          <Property Name="AREA" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_NUMEROCAJA">
+          <End Role="CAJA" Type="Self.CAJA" Multiplicity="1" />
+          <End Role="FACTURA" Type="Self.FACTURA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CAJA">
+              <PropertyRef Name="NUMEROCAJA" />
+            </Principal>
+            <Dependent Role="FACTURA">
+              <PropertyRef Name="IDCAJA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoMercadoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CAJA" EntityType="Self.CAJA" />
+          <EntitySet Name="FACTURA" EntityType="Self.FACTURA" />
+          <EntitySet Name="PRODUCTOFRESCO" EntityType="Self.PRODUCTOFRESCO" />
+          <EntitySet Name="PRODUCTONOFRESCO" EntityType="Self.PRODUCTONOFRESCO" />
+          <AssociationSet Name="FK_NUMEROCAJA" Association="Self.FK_NUMEROCAJA">
+            <End Role="CAJA" EntitySet="CAJA" />
+            <End Role="FACTURA" EntitySet="FACTURA" />
+          </AssociationSet>
+          <FunctionImport Name="PROCEDURE_COMPRA">
+            <Parameter Name="PCID" Mode="In" Type="String" />
+            <Parameter Name="PCCANTIDAD" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="ProyectoMercadoEntities">
+          <EntitySetMapping Name="CAJA">
+            <EntityTypeMapping TypeName="Model.CAJA">
+              <MappingFragment StoreEntitySet="CAJA">
+                <ScalarProperty Name="NUMEROCAJA" ColumnName="NUMEROCAJA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FACTURA">
+            <EntityTypeMapping TypeName="Model.FACTURA">
+              <MappingFragment StoreEntitySet="FACTURA">
+                <ScalarProperty Name="NUMEROFACTURA" ColumnName="NUMEROFACTURA" />
+                <ScalarProperty Name="FECHA" ColumnName="FECHA" />
+                <ScalarProperty Name="HORA" ColumnName="HORA" />
+                <ScalarProperty Name="SUBTOTAL" ColumnName="SUBTOTAL" />
+                <ScalarProperty Name="TOTAL" ColumnName="TOTAL" />
+                <ScalarProperty Name="IDCAJA" ColumnName="IDCAJA" />
+                <ScalarProperty Name="IDUSUARIO" ColumnName="IDUSUARIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTOFRESCO">
+            <EntityTypeMapping TypeName="Model.PRODUCTOFRESCO">
+              <MappingFragment StoreEntitySet="PRODUCTOFRESCO">
+                <ScalarProperty Name="PLU" ColumnName="PLU" />
+                <ScalarProperty Name="PESO" ColumnName="PESO" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTONOFRESCO">
+            <EntityTypeMapping TypeName="Model.PRODUCTONOFRESCO">
+              <MappingFragment StoreEntitySet="PRODUCTONOFRESCO">
+                <ScalarProperty Name="EAN" ColumnName="EAN" />
+                <ScalarProperty Name="DESCRIPCION" ColumnName="DESCRIPCION" />
+                <ScalarProperty Name="CANTIDAD" ColumnName="CANTIDAD" />
+                <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+                <ScalarProperty Name="AREA" ColumnName="AREA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="PROCEDURE_COMPRA" FunctionName="Model.Store.PROCEDURE_COMPRA" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
