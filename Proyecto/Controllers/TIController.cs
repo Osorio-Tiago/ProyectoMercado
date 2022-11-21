@@ -46,11 +46,11 @@ namespace Proyecto.Controllers
 
                 comando.ExecuteNonQuery();
 
-                return new HttpStatusCodeResult(HttpStatusCode.OK, "OK");
+                return Json(new HttpStatusCodeResult(HttpStatusCode.OK, "OK"));
             }
             catch (Exception e)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Json(new HttpStatusCodeResult(HttpStatusCode.BadRequest));
             }
         }
 
@@ -66,11 +66,11 @@ namespace Proyecto.Controllers
 
                 comando.ExecuteNonQuery();
 
-                return new HttpStatusCodeResult(HttpStatusCode.OK, "OK");
+                return Json(new HttpStatusCodeResult(HttpStatusCode.OK, "OK"));
             }
             catch (Exception e)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Json(new HttpStatusCodeResult(HttpStatusCode.BadRequest));
             }
         }
 
@@ -81,16 +81,16 @@ namespace Proyecto.Controllers
             try
             {
                 conn.Open();
-                string consulta = "";
+                string consulta = "update ProductoFresco set peso = "+productoFresco.Peso+", descripcion = '"+productoFresco.Descripcion+"', precio = "+productoFresco.Precio+"where PLU = "+productoFresco.Plu;
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
                 comando.ExecuteNonQuery();
 
-                return new HttpStatusCodeResult(HttpStatusCode.OK, "OK");
+                return Json(new HttpStatusCodeResult(HttpStatusCode.OK, "OK"));
             }
             catch (Exception e)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Json(new HttpStatusCodeResult(HttpStatusCode.BadRequest));
             }
         }
 
