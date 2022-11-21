@@ -103,7 +103,7 @@
                         <label>CANTIDAD</label>
                         <input type="text" name="cantidad" id="cantidad" class="form__input">
 
-                        <button id="sendData" type="submit" class="btn">MODIFICAR</button>
+                        <button id="sendData" type="submit" class="btn" onclick="modificarProducto()" >MODIFICAR</button>
                     </div>
 
                 </div>
@@ -111,5 +111,30 @@
             </div>
         </div>
     </div>
+
+<!--create modal-->
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal fade" id="modificarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h5 class="modal-title" id="staticBackdropLabel">Agregar producto</h5>
+
+                            </div>
+
+                            <div class="modal-body" id="modificarProductoRespuesta">
+                                <p>Muestra informacion producto</p>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 </body>
 </html>

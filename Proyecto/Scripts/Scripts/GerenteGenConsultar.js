@@ -7,18 +7,9 @@ var EstadosDeRespuesta = {
 
 
 function consultarProducto() {
-    
+    idProducto = document.getElementById("idproducto").value
     if (document.getElementById("tipoProducto").value == "noFresco") {
-        /* fetch(url + "GerenteGeneral_ConsultarProductoNoFresco") //Nombre pendiente a ver cual le pone Santiago
-             method: "GET",
-                body: JSON.stringify({
-                    ean: document.getElementById("idProducto").value  //pendiente al nombre que le de Santiago
-                 
-                }),
-                headers: {
-                    "Accept": "application/json",
-                    "Content-Type": "application/json"
-                }
+        /* fetch(url + "GerenteGeneral_ConsultarProductoNoFresco"+idProducto) //Nombre pendiente a ver cual le pone Santiago       
              .then((respuesta) => {
                  return respuesta.json();
                  

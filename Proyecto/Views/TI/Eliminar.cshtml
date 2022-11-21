@@ -80,16 +80,20 @@
                 <div class="components">
                     <!--add main information-->
 
-                    <label>ID PRODUCTO</label>
-                    <input type="text" name="idProducto" id="idProducto" class="form__input">
+                   <div class="form">
+                   
+                         <label>ID PRODUCTO</label>
+                        <input type="text" name="idProducto" id="idProducto" class="form__input">
 
-                    <label>TIPO DE PRODUCTO</label>
-                     <select id="tipoProducto" class="form__input">
-                        <option value="fresco">Fresco</option>
-                        <option value="noFresco">No Fresco</option>
-                    </select>
+                        <label>TIPO DE PRODUCTO</label>
+                        <select id="tipoProducto" class="form__input">
+                            <option value="fresco">Fresco</option>
+                            <option value="noFresco">No Fresco</option>
+                        </select>
 
-                    <button id="sendData" type="submit" onclick="eliminarProducto()" class="btn">ELIMINAR</button>
+                        <button id="sendData" type="submit" onclick="eliminarProducto()" class="btn">ELIMINAR</button>
+                   </div>
+
                 </div>
 
             </div>

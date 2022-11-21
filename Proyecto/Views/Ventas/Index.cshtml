@@ -76,11 +76,11 @@
                         <label>CANTIDAD</label>
                         <input type="text" name="cantidad" id="cantidad" class="form__input">
 
-                        <button id="agregarProducto" type="submit" class="btn">AGREGAR</button><br>
+                        <button id="agregarProducto" type="submit" onclick="agregarProducto()" class="btn">AGREGAR</button><br>
 
-                        <button id="finalizaVenta" type="submit" class="btn">FINALIZAR VENTA</button><br>
+                        <button id="finalizaVenta" type="submit"  onclick="finalizarVenta()" class="btn">FINALIZAR VENTA</button><br>
 
-                        <button id="verFactura" type="submit" class="btn">MOSTRAR FACTURA</button>
+                        <button id="verFactura" type="submit" onclick="verFactura()" class="btn">MOSTRAR FACTURA</button>
                     
                     </div>
                 </div>
@@ -91,16 +91,16 @@
 
     <!--create modal producto agregado--------------------------------------------------->
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal fade" id="agregarProductoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="agregarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
 
-                                <h5 class="modal-title" id="staticBackdropLabel">Detalle de producto</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">Agregar producto</h5>
 
                             </div>
 
-                            <div class="modal-body" id="agregarProductoModal">
+                            <div class="modal-body" id="agregarProductoRespuesta">
                                 
                             </div>
 
@@ -115,16 +115,16 @@
 
     <!--create modal venta exitosa--------------------------------------------------->
  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal fade" id="finalizarVentaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="finalizarVenta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
 
-                                <h5 class="modal-title" id="staticBackdropLabel">Detalle de producto</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">Finalizar venta</h5>
 
                             </div>
 
-                            <div class="modal-body" id="finalizarVentaModal">
+                            <div class="modal-body" id="finalizarVentaRespuesta">
                                 
                             </div>
 
@@ -145,11 +145,11 @@
                         <div class="modal-content">
                             <div class="modal-header">
 
-                                <h5 class="modal-title" id="staticBackdropLabel">Detalle de producto</h5>
+                                <h5 class="modal-title" id="staticBackdropLabel">Factura</h5>
 
                             </div>
 
-                            <div class="modal-body" id="verFacturaModal">
+                            <div class="modal-body" id="verFacturaRespuesta">
                                 
                             </div>
 
