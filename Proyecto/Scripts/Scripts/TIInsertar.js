@@ -21,7 +21,7 @@ function agregarProducto() {
             body: JSON.stringify({
                 EAN: document.getElementById("idProducto").value,            //pendiente al nombre que le de Santiago              
                 descripcion: document.getElementById("descripcion").value,
-                peso: document.getElementById("peso").value,
+               
                 precio: document.getElementById("precio").value,
                 cantidad: document.getElementById("cantidad").value
             }),
@@ -57,7 +57,7 @@ function agregarProducto() {
                 descripcion: document.getElementById("descripcion").value,
                 peso: document.getElementById("peso").value,
                 precio: document.getElementById("precio").value,
-                cantidad: document.getElementById("cantidad").value
+                
             }),
             headers: {
                 "Accept": "application/json",
