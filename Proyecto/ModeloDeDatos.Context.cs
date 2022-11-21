@@ -45,5 +45,151 @@ namespace Proyecto
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PROCEDURE_COMPRA", pCIDParameter, pCCANTIDADParameter);
         }
+    
+        public virtual int SP_ACTUALIZARPRODUCTOFRESCO(Nullable<decimal> pRODUCTOPLU, Nullable<decimal> pRODUCTOPESO, string pRODUCTODESCRIPCION, Nullable<decimal> pRODUCTOPRECIO)
+        {
+            var pRODUCTOPLUParameter = pRODUCTOPLU.HasValue ?
+                new ObjectParameter("PRODUCTOPLU", pRODUCTOPLU) :
+                new ObjectParameter("PRODUCTOPLU", typeof(decimal));
+    
+            var pRODUCTOPESOParameter = pRODUCTOPESO.HasValue ?
+                new ObjectParameter("PRODUCTOPESO", pRODUCTOPESO) :
+                new ObjectParameter("PRODUCTOPESO", typeof(decimal));
+    
+            var pRODUCTODESCRIPCIONParameter = pRODUCTODESCRIPCION != null ?
+                new ObjectParameter("PRODUCTODESCRIPCION", pRODUCTODESCRIPCION) :
+                new ObjectParameter("PRODUCTODESCRIPCION", typeof(string));
+    
+            var pRODUCTOPRECIOParameter = pRODUCTOPRECIO.HasValue ?
+                new ObjectParameter("PRODUCTOPRECIO", pRODUCTOPRECIO) :
+                new ObjectParameter("PRODUCTOPRECIO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ACTUALIZARPRODUCTOFRESCO", pRODUCTOPLUParameter, pRODUCTOPESOParameter, pRODUCTODESCRIPCIONParameter, pRODUCTOPRECIOParameter);
+        }
+    
+        public virtual int SP_ACTUALIZARPRODUCTONOFRESCO(string pRODUCTOEAN, string pRODUCTODESCRIPCION, Nullable<decimal> pRODUCTOCANTIDAD, Nullable<decimal> pRODUCTOPRECIO, string pRODUCTOAREA)
+        {
+            var pRODUCTOEANParameter = pRODUCTOEAN != null ?
+                new ObjectParameter("PRODUCTOEAN", pRODUCTOEAN) :
+                new ObjectParameter("PRODUCTOEAN", typeof(string));
+    
+            var pRODUCTODESCRIPCIONParameter = pRODUCTODESCRIPCION != null ?
+                new ObjectParameter("PRODUCTODESCRIPCION", pRODUCTODESCRIPCION) :
+                new ObjectParameter("PRODUCTODESCRIPCION", typeof(string));
+    
+            var pRODUCTOCANTIDADParameter = pRODUCTOCANTIDAD.HasValue ?
+                new ObjectParameter("PRODUCTOCANTIDAD", pRODUCTOCANTIDAD) :
+                new ObjectParameter("PRODUCTOCANTIDAD", typeof(decimal));
+    
+            var pRODUCTOPRECIOParameter = pRODUCTOPRECIO.HasValue ?
+                new ObjectParameter("PRODUCTOPRECIO", pRODUCTOPRECIO) :
+                new ObjectParameter("PRODUCTOPRECIO", typeof(decimal));
+    
+            var pRODUCTOAREAParameter = pRODUCTOAREA != null ?
+                new ObjectParameter("PRODUCTOAREA", pRODUCTOAREA) :
+                new ObjectParameter("PRODUCTOAREA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_ACTUALIZARPRODUCTONOFRESCO", pRODUCTOEANParameter, pRODUCTODESCRIPCIONParameter, pRODUCTOCANTIDADParameter, pRODUCTOPRECIOParameter, pRODUCTOAREAParameter);
+        }
+    
+        public virtual int SP_INSERTARDETALLEFACTURA(Nullable<decimal> dETALLENUMFACTURA, Nullable<decimal> dETALLEPRODUCTOFRESCO, string dETALLEPRODUCTONOFRESCO, Nullable<decimal> dETALLECANTIDAD, Nullable<decimal> dETALLEPRECIO)
+        {
+            var dETALLENUMFACTURAParameter = dETALLENUMFACTURA.HasValue ?
+                new ObjectParameter("DETALLENUMFACTURA", dETALLENUMFACTURA) :
+                new ObjectParameter("DETALLENUMFACTURA", typeof(decimal));
+    
+            var dETALLEPRODUCTOFRESCOParameter = dETALLEPRODUCTOFRESCO.HasValue ?
+                new ObjectParameter("DETALLEPRODUCTOFRESCO", dETALLEPRODUCTOFRESCO) :
+                new ObjectParameter("DETALLEPRODUCTOFRESCO", typeof(decimal));
+    
+            var dETALLEPRODUCTONOFRESCOParameter = dETALLEPRODUCTONOFRESCO != null ?
+                new ObjectParameter("DETALLEPRODUCTONOFRESCO", dETALLEPRODUCTONOFRESCO) :
+                new ObjectParameter("DETALLEPRODUCTONOFRESCO", typeof(string));
+    
+            var dETALLECANTIDADParameter = dETALLECANTIDAD.HasValue ?
+                new ObjectParameter("DETALLECANTIDAD", dETALLECANTIDAD) :
+                new ObjectParameter("DETALLECANTIDAD", typeof(decimal));
+    
+            var dETALLEPRECIOParameter = dETALLEPRECIO.HasValue ?
+                new ObjectParameter("DETALLEPRECIO", dETALLEPRECIO) :
+                new ObjectParameter("DETALLEPRECIO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_INSERTARDETALLEFACTURA", dETALLENUMFACTURAParameter, dETALLEPRODUCTOFRESCOParameter, dETALLEPRODUCTONOFRESCOParameter, dETALLECANTIDADParameter, dETALLEPRECIOParameter);
+        }
+    
+        public virtual int SP_INSERTARFACTURA(Nullable<System.DateTime> fACTURAFECHA, Nullable<System.DateTime> fACTURAHORA, Nullable<decimal> fACTURASUBTOTAL, Nullable<decimal> fACTURATOTAL, Nullable<decimal> fACTURAIDCAJA, Nullable<decimal> fACTURAIDUSUARIO)
+        {
+            var fACTURAFECHAParameter = fACTURAFECHA.HasValue ?
+                new ObjectParameter("FACTURAFECHA", fACTURAFECHA) :
+                new ObjectParameter("FACTURAFECHA", typeof(System.DateTime));
+    
+            var fACTURAHORAParameter = fACTURAHORA.HasValue ?
+                new ObjectParameter("FACTURAHORA", fACTURAHORA) :
+                new ObjectParameter("FACTURAHORA", typeof(System.DateTime));
+    
+            var fACTURASUBTOTALParameter = fACTURASUBTOTAL.HasValue ?
+                new ObjectParameter("FACTURASUBTOTAL", fACTURASUBTOTAL) :
+                new ObjectParameter("FACTURASUBTOTAL", typeof(decimal));
+    
+            var fACTURATOTALParameter = fACTURATOTAL.HasValue ?
+                new ObjectParameter("FACTURATOTAL", fACTURATOTAL) :
+                new ObjectParameter("FACTURATOTAL", typeof(decimal));
+    
+            var fACTURAIDCAJAParameter = fACTURAIDCAJA.HasValue ?
+                new ObjectParameter("FACTURAIDCAJA", fACTURAIDCAJA) :
+                new ObjectParameter("FACTURAIDCAJA", typeof(decimal));
+    
+            var fACTURAIDUSUARIOParameter = fACTURAIDUSUARIO.HasValue ?
+                new ObjectParameter("FACTURAIDUSUARIO", fACTURAIDUSUARIO) :
+                new ObjectParameter("FACTURAIDUSUARIO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_INSERTARFACTURA", fACTURAFECHAParameter, fACTURAHORAParameter, fACTURASUBTOTALParameter, fACTURATOTALParameter, fACTURAIDCAJAParameter, fACTURAIDUSUARIOParameter);
+        }
+    
+        public virtual int SP_INSERTARPRODUCTOFRESCO(Nullable<decimal> pRODUCTOPLU, Nullable<decimal> pRODUCTOPESO, string pRODUCTODESCRIPCION, Nullable<decimal> pRODUCTOPRECIO)
+        {
+            var pRODUCTOPLUParameter = pRODUCTOPLU.HasValue ?
+                new ObjectParameter("PRODUCTOPLU", pRODUCTOPLU) :
+                new ObjectParameter("PRODUCTOPLU", typeof(decimal));
+    
+            var pRODUCTOPESOParameter = pRODUCTOPESO.HasValue ?
+                new ObjectParameter("PRODUCTOPESO", pRODUCTOPESO) :
+                new ObjectParameter("PRODUCTOPESO", typeof(decimal));
+    
+            var pRODUCTODESCRIPCIONParameter = pRODUCTODESCRIPCION != null ?
+                new ObjectParameter("PRODUCTODESCRIPCION", pRODUCTODESCRIPCION) :
+                new ObjectParameter("PRODUCTODESCRIPCION", typeof(string));
+    
+            var pRODUCTOPRECIOParameter = pRODUCTOPRECIO.HasValue ?
+                new ObjectParameter("PRODUCTOPRECIO", pRODUCTOPRECIO) :
+                new ObjectParameter("PRODUCTOPRECIO", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_INSERTARPRODUCTOFRESCO", pRODUCTOPLUParameter, pRODUCTOPESOParameter, pRODUCTODESCRIPCIONParameter, pRODUCTOPRECIOParameter);
+        }
+    
+        public virtual int SP_INSERTARPRODUCTONOFRESCO(string pRODUCTOEAN, string pRODUCTODESCRIPCION, Nullable<decimal> pRODUCTOCANTIDAD, Nullable<decimal> pRODUCTOPRECIO, string pRODUCTOAREA)
+        {
+            var pRODUCTOEANParameter = pRODUCTOEAN != null ?
+                new ObjectParameter("PRODUCTOEAN", pRODUCTOEAN) :
+                new ObjectParameter("PRODUCTOEAN", typeof(string));
+    
+            var pRODUCTODESCRIPCIONParameter = pRODUCTODESCRIPCION != null ?
+                new ObjectParameter("PRODUCTODESCRIPCION", pRODUCTODESCRIPCION) :
+                new ObjectParameter("PRODUCTODESCRIPCION", typeof(string));
+    
+            var pRODUCTOCANTIDADParameter = pRODUCTOCANTIDAD.HasValue ?
+                new ObjectParameter("PRODUCTOCANTIDAD", pRODUCTOCANTIDAD) :
+                new ObjectParameter("PRODUCTOCANTIDAD", typeof(decimal));
+    
+            var pRODUCTOPRECIOParameter = pRODUCTOPRECIO.HasValue ?
+                new ObjectParameter("PRODUCTOPRECIO", pRODUCTOPRECIO) :
+                new ObjectParameter("PRODUCTOPRECIO", typeof(decimal));
+    
+            var pRODUCTOAREAParameter = pRODUCTOAREA != null ?
+                new ObjectParameter("PRODUCTOAREA", pRODUCTOAREA) :
+                new ObjectParameter("PRODUCTOAREA", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_INSERTARPRODUCTONOFRESCO", pRODUCTOEANParameter, pRODUCTODESCRIPCIONParameter, pRODUCTOCANTIDADParameter, pRODUCTOPRECIOParameter, pRODUCTOAREAParameter);
+        }
     }
 }

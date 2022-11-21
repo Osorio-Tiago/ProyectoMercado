@@ -16,7 +16,7 @@ namespace Proyecto.Controllers
         }
 
         [HttpGet]
-        public JsonResult Consultar_Producto(int id)
+        public JsonResult Consultar_ProductoFresco(int id)
         {
             ProductoFresco aux = new ProductoFresco();
             return Json(aux, JsonRequestBehavior.AllowGet);

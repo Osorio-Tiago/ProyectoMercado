@@ -213,8 +213,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="ModeloDeDatos.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ModeloDeDatos.Context.cs</LastGenOutput>
       <DependentUpon>ModeloDeDatos.edmx</DependentUpon>
+      <LastGenOutput>ModeloDeDatos.Context.cs</LastGenOutput>
     </Content>
     <Content Include="ModeloDeDatos.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

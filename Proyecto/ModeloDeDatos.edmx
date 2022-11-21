@@ -76,6 +76,47 @@ error 6004: Una relación hace referencia a la tabla 'MERCADO.DETALLEFACTURA', p
           <Parameter Name="PCID" Type="varchar2" Mode="In" />
           <Parameter Name="PCCANTIDAD" Type="number" Mode="In" />
         </Function>
+        <Function Name="SP_ACTUALIZARPRODUCTOFRESCO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="MERCADO">
+          <Parameter Name="PRODUCTOPLU" Type="number" Mode="In" />
+          <Parameter Name="PRODUCTOPESO" Type="float" Mode="In" />
+          <Parameter Name="PRODUCTODESCRIPCION" Type="varchar2" Mode="In" />
+          <Parameter Name="PRODUCTOPRECIO" Type="float" Mode="In" />
+        </Function>
+        <Function Name="SP_ACTUALIZARPRODUCTONOFRESCO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="MERCADO">
+          <Parameter Name="PRODUCTOEAN" Type="varchar2" Mode="In" />
+          <Parameter Name="PRODUCTODESCRIPCION" Type="varchar2" Mode="In" />
+          <Parameter Name="PRODUCTOCANTIDAD" Type="number" Mode="In" />
+          <Parameter Name="PRODUCTOPRECIO" Type="float" Mode="In" />
+          <Parameter Name="PRODUCTOAREA" Type="varchar2" Mode="In" />
+        </Function>
+        <Function Name="SP_INSERTARDETALLEFACTURA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="MERCADO">
+          <Parameter Name="DETALLENUMFACTURA" Type="number" Mode="In" />
+          <Parameter Name="DETALLEPRODUCTOFRESCO" Type="number" Mode="In" />
+          <Parameter Name="DETALLEPRODUCTONOFRESCO" Type="varchar2" Mode="In" />
+          <Parameter Name="DETALLECANTIDAD" Type="number" Mode="In" />
+          <Parameter Name="DETALLEPRECIO" Type="float" Mode="In" />
+        </Function>
+        <Function Name="SP_INSERTARFACTURA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="MERCADO">
+          <Parameter Name="FACTURAFECHA" Type="date" Mode="In" />
+          <Parameter Name="FACTURAHORA" Type="date" Mode="In" />
+          <Parameter Name="FACTURASUBTOTAL" Type="float" Mode="In" />
+          <Parameter Name="FACTURATOTAL" Type="float" Mode="In" />
+          <Parameter Name="FACTURAIDCAJA" Type="number" Mode="In" />
+          <Parameter Name="FACTURAIDUSUARIO" Type="number" Mode="In" />
+        </Function>
+        <Function Name="SP_INSERTARPRODUCTOFRESCO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="MERCADO">
+          <Parameter Name="PRODUCTOPLU" Type="number" Mode="In" />
+          <Parameter Name="PRODUCTOPESO" Type="float" Mode="In" />
+          <Parameter Name="PRODUCTODESCRIPCION" Type="varchar2" Mode="In" />
+          <Parameter Name="PRODUCTOPRECIO" Type="float" Mode="In" />
+        </Function>
+        <Function Name="SP_INSERTARPRODUCTONOFRESCO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="MERCADO">
+          <Parameter Name="PRODUCTOEAN" Type="varchar2" Mode="In" />
+          <Parameter Name="PRODUCTODESCRIPCION" Type="varchar2" Mode="In" />
+          <Parameter Name="PRODUCTOCANTIDAD" Type="number" Mode="In" />
+          <Parameter Name="PRODUCTOPRECIO" Type="float" Mode="In" />
+          <Parameter Name="PRODUCTOAREA" Type="varchar2" Mode="In" />
+        </Function>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="CAJA" EntityType="Self.CAJA" Schema="MERCADO" store:Type="Tables" />
           <EntitySet Name="FACTURA" EntityType="Self.FACTURA" Schema="MERCADO" store:Type="Tables" />
@@ -155,6 +196,47 @@ error 6004: Una relación hace referencia a la tabla 'MERCADO.DETALLEFACTURA', p
             <Parameter Name="PCID" Mode="In" Type="String" />
             <Parameter Name="PCCANTIDAD" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <FunctionImport Name="SP_ACTUALIZARPRODUCTOFRESCO">
+            <Parameter Name="PRODUCTOPLU" Mode="In" Type="Decimal" />
+            <Parameter Name="PRODUCTOPESO" Mode="In" Type="Decimal" />
+            <Parameter Name="PRODUCTODESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="PRODUCTOPRECIO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACTUALIZARPRODUCTONOFRESCO">
+            <Parameter Name="PRODUCTOEAN" Mode="In" Type="String" />
+            <Parameter Name="PRODUCTODESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="PRODUCTOCANTIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="PRODUCTOPRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="PRODUCTOAREA" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_INSERTARDETALLEFACTURA">
+            <Parameter Name="DETALLENUMFACTURA" Mode="In" Type="Decimal" />
+            <Parameter Name="DETALLEPRODUCTOFRESCO" Mode="In" Type="Decimal" />
+            <Parameter Name="DETALLEPRODUCTONOFRESCO" Mode="In" Type="String" />
+            <Parameter Name="DETALLECANTIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="DETALLEPRECIO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_INSERTARFACTURA">
+            <Parameter Name="FACTURAFECHA" Mode="In" Type="DateTime" />
+            <Parameter Name="FACTURAHORA" Mode="In" Type="DateTime" />
+            <Parameter Name="FACTURASUBTOTAL" Mode="In" Type="Decimal" />
+            <Parameter Name="FACTURATOTAL" Mode="In" Type="Decimal" />
+            <Parameter Name="FACTURAIDCAJA" Mode="In" Type="Decimal" />
+            <Parameter Name="FACTURAIDUSUARIO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_INSERTARPRODUCTOFRESCO">
+            <Parameter Name="PRODUCTOPLU" Mode="In" Type="Decimal" />
+            <Parameter Name="PRODUCTOPESO" Mode="In" Type="Decimal" />
+            <Parameter Name="PRODUCTODESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="PRODUCTOPRECIO" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_INSERTARPRODUCTONOFRESCO">
+            <Parameter Name="PRODUCTOEAN" Mode="In" Type="String" />
+            <Parameter Name="PRODUCTODESCRIPCION" Mode="In" Type="String" />
+            <Parameter Name="PRODUCTOCANTIDAD" Mode="In" Type="Decimal" />
+            <Parameter Name="PRODUCTOPRECIO" Mode="In" Type="Decimal" />
+            <Parameter Name="PRODUCTOAREA" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -204,6 +286,12 @@ error 6004: Una relación hace referencia a la tabla 'MERCADO.DETALLEFACTURA', p
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="PROCEDURE_COMPRA" FunctionName="Model.Store.PROCEDURE_COMPRA" />
+          <FunctionImportMapping FunctionImportName="SP_ACTUALIZARPRODUCTOFRESCO" FunctionName="Model.Store.SP_ACTUALIZARPRODUCTOFRESCO" />
+          <FunctionImportMapping FunctionImportName="SP_ACTUALIZARPRODUCTONOFRESCO" FunctionName="Model.Store.SP_ACTUALIZARPRODUCTONOFRESCO" />
+          <FunctionImportMapping FunctionImportName="SP_INSERTARDETALLEFACTURA" FunctionName="Model.Store.SP_INSERTARDETALLEFACTURA" />
+          <FunctionImportMapping FunctionImportName="SP_INSERTARFACTURA" FunctionName="Model.Store.SP_INSERTARFACTURA" />
+          <FunctionImportMapping FunctionImportName="SP_INSERTARPRODUCTOFRESCO" FunctionName="Model.Store.SP_INSERTARPRODUCTOFRESCO" />
+          <FunctionImportMapping FunctionImportName="SP_INSERTARPRODUCTONOFRESCO" FunctionName="Model.Store.SP_INSERTARPRODUCTONOFRESCO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
