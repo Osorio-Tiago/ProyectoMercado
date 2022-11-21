@@ -31,13 +31,13 @@ function insertarProducto() {
             EstadosDeRespuesta = JSON.parse(Data);
             if (EstadosDeRespuesta.StatusDescription == "OK") {
 
-                document.getElementById("agregarProductoRespuesta").innerHTML = `<div>Producto insertado correctamente/div>`
-                $('#agregarProducto').modal('show');
+                document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto insertado correctamente</div>`
+                $('#respuesta').modal('show');
             }
             else {
-                document.getElementById("agregarProductoRespuesta").innerHTML = `<div>Error al insertar el producto</div>`
+                document.getElementById("mensajeRespuesta").innerHTML = `<div>Error al insertar el producto</div>`
 
-                $('#agregarProducto').modal('show');
+                $('#respuesta').modal('show');
             }
         })
     }
@@ -65,13 +65,13 @@ function insertarProducto() {
             EstadosDeRespuesta = JSON.parse(Data);
             if (EstadosDeRespuesta.StatusDescription == "OK") {
 
-                document.getElementById("agregarProductoRespuesta").innerHTML = `<div>Producto insertado correctamente</div>`
-                $('#agregarProducto').modal('show');
+                document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto insertado correctamente</div>`
+                $('#respuesta').modal('show');
             }
             else {
-                document.getElementById("agregarProductoRespuesta").innerHTML = `<div>Error al insertar el producto</div>`
+                document.getElementById("mensajeRespuesta").innerHTML = `<div>Error al insertar el producto</div>`
 
-                $('#agregarProducto').modal('show');
+                $('#respuesta').modal('show');
             }
         })
     }

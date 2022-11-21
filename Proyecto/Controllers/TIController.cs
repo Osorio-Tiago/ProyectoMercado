@@ -94,6 +94,25 @@ namespace Proyecto.Controllers
             }
         }
 
+        [HttpPost]
+        public ActionResult TI_ModificarProductoNoFresco(ProductoNoFresco productoNoFresco)
+        {
+            try
+            {
+                conn.Open();
+                productoNoFresco.Area = "Abarrotes";
+                string consulta = "update ProductoNoFresco set descripcion = "+productoNoFresco.Descripcion+", precio = "+productoNoFresco.Precio+", cantidad = "+productoNoFresco.Cantidad+", area = "+productoNoFresco.Area+"where EAN = "+productoNoFresco.Ean; ;
+                OracleCommand comando = new OracleCommand(consulta, conn);
+
+                comando.ExecuteNonQuery();
+
+                return Json(new HttpStatusCodeResult(HttpStatusCode.OK, "OK"));
+            }
+            catch (Exception e)
+            {
+                return Json(new HttpStatusCodeResult(HttpStatusCode.BadRequest));
+            }
+        }
 
         [HttpGet]
         public ActionResult Eliminar()
