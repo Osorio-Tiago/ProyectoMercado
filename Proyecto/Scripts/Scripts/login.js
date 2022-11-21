@@ -3,16 +3,15 @@ var usuario = document.getElementById("username");
 var contra = document.getElementById("password");
 
 //Objeto para leer posibles respuestas del servidor
-var url = "/Cajero/"
+var url = "/Login/"
 
 //funcion principal
 function iniciarSesion() {
-   
-    fetch(url + "IniciarSesion", {
+    fetch(url + "Index", {
         method: "POST",
         body: JSON.stringify({
-            UsuarioLogin: document.getElementById("username").value , 
-            ContraLogin: document.getElementById("password").value  
+            Username: document.getElementById("username").value , 
+            Password: document.getElementById("password").value  
           
         }),
         headers: {
@@ -21,19 +20,9 @@ function iniciarSesion() {
         }
     }).then(function (response) {
         if (response.ok)
-            return response.text()
+            return document.location.href = response.url
         else
-            document.location.href = "/Error.cshtml"
-    }).then(function (Data) {
-        EstadosDeRespuesta = JSON.parse(Data);
-        if (EstadosDeRespuesta.StatusDescription == "OK") {
-            
-        }
-        else {
             document.getElementById("usuarioIncorrecto").innerHTML = `<div>Error al iniciar sesion</div>`
-
-        }
-
+           // document.location.href = "/Error.cshtml"
     })
-
 }
