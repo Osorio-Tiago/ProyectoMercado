@@ -89,11 +89,16 @@
                         <label>PLU/EAN</label>
                         <input type="text" name="plu" id="idProducto" class="form__input">
 
-                        <label>TIPO DE PRODUCTO</label>
-                            <select id="tipoProducto" class="form__input">
-                                <option value="fresco">Fresco</option>
-                                <option value="noFresco">No Fresco</option>
+                        <div class="row">
+                            <label>AREA DEL PRODUCTO</label>
+                            <select id="areaProducto" class="form__input">
+                                <option value="Abarrotes">Abarrotes</option>
+                                <option value="CuidadoPersonal">Cuidado Personal</option>
+                                <option value="Mercancías">Mercancías</option>
+                                <option value="Fresco">Fresco</option>
                             </select>
+
+                        </div>
                             
                         <label>DESCRIPCION</label>
                         <input type="text" name="descripcion" id="descripcion" class="form__input">
@@ -118,7 +123,7 @@
 
 <!--create modal-->
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal fade" id="modificarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="respuesta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -127,8 +132,8 @@
 
                             </div>
 
-                            <div class="modal-body" id="modificarProductoRespuesta">
-                                <p>Muestra informacion producto</p>
+                            <div class="modal-body" id="mensajeRespuesta">
+                               
                             </div>
 
                             <div class="modal-footer">

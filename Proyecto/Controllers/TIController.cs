@@ -40,7 +40,7 @@ namespace Proyecto.Controllers
             try
             {
                 conn.Open();
-                productoNoFresco.Area = "Abarrotes";
+              
                 string consulta = "insert into ProductoNoFresco(EAN, descripcion, cantidad, precio, area) values ('" + productoNoFresco.Ean + "','" + productoNoFresco.Descripcion + "'," + productoNoFresco.Cantidad + "," + productoNoFresco.Precio + ",'" + productoNoFresco.Area + "')";
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
@@ -100,7 +100,7 @@ namespace Proyecto.Controllers
             try
             {
                 conn.Open();
-                productoNoFresco.Area = "Abarrotes";
+        
                 string consulta = "update ProductoNoFresco set descripcion = "+productoNoFresco.Descripcion+", precio = "+productoNoFresco.Precio+", cantidad = "+productoNoFresco.Cantidad+", area = "+productoNoFresco.Area+"where EAN = "+productoNoFresco.Ean; ;
                 OracleCommand comando = new OracleCommand(consulta, conn);
 

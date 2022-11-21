@@ -44,7 +44,7 @@ namespace Proyecto.Controllers
             try
             {
                 conn.Open();
-                productoNoFresco.Area = "Abarrotes";
+           
                 string consulta = "insert into ProductoNoFresco(EAN, descripcion, cantidad, precio, area) values ('" + productoNoFresco.Ean + "','" + productoNoFresco.Descripcion + "'," + productoNoFresco.Cantidad + "," + productoNoFresco.Precio + ",'" + productoNoFresco.Area + "')";
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
@@ -66,6 +66,44 @@ namespace Proyecto.Controllers
             {
                 conn.Open();
                 string consulta = "insert into ProductoFresco(PLU, peso, descripcion, precio) values (" + productoFresco.Plu + "," + productoFresco.Peso + ",'" + productoFresco.Descripcion + "'," + productoFresco.Precio + ")";
+                OracleCommand comando = new OracleCommand(consulta, conn);
+
+                comando.ExecuteNonQuery();
+
+                return Json(new HttpStatusCodeResult(HttpStatusCode.OK, "OK"));
+            }
+            catch (Exception e)
+            {
+                return Json(new HttpStatusCodeResult(HttpStatusCode.BadRequest));
+            }
+        }
+        [HttpPost]
+        public ActionResult GerenteGeneral_ModificarProductoFresco(ProductoFresco productoFresco)
+        {
+            try
+            {
+                conn.Open();
+                string consulta = "update ProductoFresco set peso = " + productoFresco.Peso + ", descripcion = '" + productoFresco.Descripcion + "', precio = " + productoFresco.Precio + "where PLU = " + productoFresco.Plu;
+                OracleCommand comando = new OracleCommand(consulta, conn);
+
+                comando.ExecuteNonQuery();
+
+                return Json(new HttpStatusCodeResult(HttpStatusCode.OK, "OK"));
+            }
+            catch (Exception e)
+            {
+                return Json(new HttpStatusCodeResult(HttpStatusCode.BadRequest));
+            }
+        }
+
+        [HttpPost]
+        public ActionResult GerenteGeneral_ModificarProductoNoFresco(ProductoNoFresco productoNoFresco)
+        {
+            try
+            {
+                conn.Open();
+         
+                string consulta = "update ProductoNoFresco set descripcion = " + productoNoFresco.Descripcion + ", precio = " + productoNoFresco.Precio + ", cantidad = " + productoNoFresco.Cantidad + ", area = " + productoNoFresco.Area + "where EAN = " + productoNoFresco.Ean; ;
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
                 comando.ExecuteNonQuery();
