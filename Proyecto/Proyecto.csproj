@@ -237,6 +237,14 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\Scripts\CajeroConsultar.js" />
+    <Content Include="Scripts\Scripts\CajeroVenta.js" />
+    <Content Include="Scripts\Scripts\GerenteAreaConsultar.js" />
+    <Content Include="Scripts\Scripts\GerenteAreaModificar.js" />
+    <Content Include="Scripts\Scripts\GerenteGenConsultar.js" />
+    <Content Include="Scripts\Scripts\GerenteGenEliminar.js" />
+    <Content Include="Scripts\Scripts\GerenteGenInsertar.js" />
+    <Content Include="Scripts\Scripts\GerenteGenModificar.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -247,6 +255,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\Scripts\TIConsultar.js" />
+    <Content Include="Scripts\Scripts\TIEliminar.js" />
+    <Content Include="Scripts\Scripts\TIInsertar.js" />
+    <Content Include="Scripts\Scripts\TIModificar.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

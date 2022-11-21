@@ -68,14 +68,22 @@
                         <label>ID PRODUCTO</label>
                         <input type="text" name="idProducto" id="cantidad" class="form__input">
 
+                        <div class="row">
+                            <label>TIPO DE PRODUCTO</label>
+                            <select id="tipoProducto" class="form__input">
+                                <option value="fresco">Fresco</option>
+                                <option value="noFresco">No Fresco</option>
+                            </select>
+                        </div>
+                    
                         <button id="sendData" type="submit" class="btn" onclick="consultarProducto()">CONSULTAR</button>
                     </div>
-
                 </div>
             </div>
 
+            <!--create modal -->
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal fade" id="consultar" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="consultarInformacion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -84,7 +92,7 @@
 
                             </div>
 
-                            <div class="modal-body" id="consultar">
+                            <div class="modal-body" id="mostrarInformacion">
                                 <p>Muestra informacion producto</p>
                             </div>
 

@@ -83,11 +83,44 @@
                     <label>ID PRODUCTO</label>
                     <input type="text" name="idProducto" id="idProducto" class="form__input">
 
-                    <button id="sendData" type="submit" class="btn">ELIMINAR</button>
+                    <label>TIPO DE PRODUCTO</label>
+                     <select id="tipoProducto" class="form__input">
+                        <option value="fresco">Fresco</option>
+                        <option value="noFresco">No Fresco</option>
+                    </select>
+
+                    <button id="sendData" type="submit" onclick="eliminarProducto()" class="btn">ELIMINAR</button>
                 </div>
 
             </div>
         </div>
     </div>
+
+     <!--create modal-->
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal fade" id="eliminarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h5 class="modal-title" id="staticBackdropLabel">Eliminar producto</h5>
+
+                            </div>
+
+                            <div class="modal-body" id="eliminarProductoRespuesta">
+                                
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
 </body>
 </html>
