@@ -1,4 +1,5 @@
-﻿var idProducto = document.getElementById("idProducto");
+﻿
+var idProducto = document.getElementById("idProducto");
 var tipoProducto = document.getElementById("tipoProducto");
 var modalHead = document.getElementById("consultarInformacion");
 var modalBody = document.getElementById("mostrarInformacion"); 
