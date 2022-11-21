@@ -30,7 +30,7 @@ function modificarProducto() {
         }).then(function (Data) {
             EstadosDeRespuesta = JSON.parse(Data);
            if (EstadosDeRespuesta.StatusDescription == "OK") {
-                document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto eliminado correctamente/div>`
+                document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto eliminado correctamente</div>`
                 $('#respuesta').modal('show');
             }
             else {
@@ -63,7 +63,7 @@ function modificarProducto() {
     }).then(function (Data) {
         EstadosDeRespuesta = JSON.parse(Data);
        if (EstadosDeRespuesta.StatusDescription == "OK") {
-                document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto eliminado correctamente/div>`
+                document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto eliminado correctamente</div>`
                 $('#respuesta').modal('show');
             }
             else {

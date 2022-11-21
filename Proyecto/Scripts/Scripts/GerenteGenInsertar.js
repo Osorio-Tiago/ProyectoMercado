@@ -31,7 +31,7 @@ function insertarProducto() {
             EstadosDeRespuesta = JSON.parse(Data);
             if (EstadosDeRespuesta.StatusDescription == "OK") {
 
-                 document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto insertado correctamente/div>`
+                 document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto insertado correctamente</div>`
                 $('#respuesta').modal('show');
            }
            else{
@@ -64,7 +64,7 @@ function insertarProducto() {
            EstadosDeRespuesta = JSON.parse(Data);
            if (EstadosDeRespuesta.StatusDescription == "OK") {
               
-                 document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto insertado correctamente/div>`
+                 document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto insertado correctamente</div>`
                 $('#respuesta').modal('show');
            }
            else{

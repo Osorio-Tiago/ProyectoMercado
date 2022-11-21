@@ -9,6 +9,10 @@ var cantidad = document.getElementById("cantidad");
 var modificarProducto = document.getElementById("modificarProducto");
 var modificarProductoRespuesta = document.getElementById("modificarProductoRespuesta");
 
+var EstadosDeRespuesta = {
+    StatusCode: 0,
+    StatusDescription: ''
+};
 //Objeto para leer posibles respuestas del servidor
 var url = "/TI/"
 
@@ -36,7 +40,7 @@ function modificarProducto() {
         }).then(function (Data) {
             EstadosDeRespuesta = JSON.parse(Data);
             if (EstadosDeRespuesta.StatusDescription == "OK") {
-                document.getElementById("modificarProductoRespuesta").innerHTML = `<div>Producto modificado correctamente/div>`
+                document.getElementById("modificarProductoRespuesta").innerHTML = `<div>Producto modificado correctamente</div>`
                 $('#modificarProducto').modal('show');
             }
             else {

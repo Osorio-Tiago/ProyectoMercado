@@ -11,7 +11,7 @@ namespace Proyecto.Controllers
 {
     public class TIController : Controller
     {
-        OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = mercado ; USER ID = MERCADO");
+      
 
         [HttpGet]
         public ActionResult Consultar()
@@ -32,7 +32,7 @@ namespace Proyecto.Controllers
         }
 
 
-      
+        OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = mercado ; USER ID = MERCADO");
         [HttpPost]
         public ActionResult TI_InsertarProductoNoFresco(ProductoNoFresco productoNoFresco)
         {
@@ -76,7 +76,7 @@ namespace Proyecto.Controllers
 
 
         [HttpPost]
-        public ActionResult TI_ActualizarProductoFresco(ProductoFresco productoFresco)
+        public ActionResult TI_ModificarProductoFresco(ProductoFresco productoFresco)
         {
             try
             {
