@@ -59,37 +59,108 @@
                 </div>
             </div>
 
-
             <!--create content-->
             <div class="col py-3">
                 <div class="components">
 
-                    <label>PLU</label>
-                    <input type="text" name="plu" id="plu" class="form__input">
+                    <div class="form" >
+                        <label>PLU/EAN</label>
+                        <input type="text" id="idProducto" class="form__input">
 
-                    <label>EAN</label>
-                    <input type="text" name="ean" id="ean" class="form__input">
+                        <label>TIPO DE PRODUCTO</label>
+                        <select id="tipoProducto" class="form__input">
+                            <option value="fresco">Fresco</option>
+                            <option value="noFresco">No Fresco</option>
+                        </select>
+                        
+                        <label>CANTIDAD</label>
+                        <input type="text" name="cantidad" id="cantidad" class="form__input">
 
-                    <label>DESCRIPCION</label>
-                    <input type="text" name="descripcion" id="descripcion" class="form__input">
+                        <button id="agregarProducto" type="submit" class="btn">AGREGAR</button><br>
 
-                    <label>PESO</label>
-                    <input type="text" name="peso" id="peso" class="form__input">
+                        <button id="finalizaVenta" type="submit" class="btn">FINALIZAR VENTA</button><br>
 
-                    <label>PRECIO</label>
-                    <input type="text" name="precio" id="precio" class="form__input">
-
-                    <label>CANTIDAD</label>
-                    <input type="text" name="cantidad" id="cantidad" class="form__input">
-
-                    <button id="sendData" type="submit" class="btn">AGREGAR</button>
-
+                        <button id="verFactura" type="submit" class="btn">MOSTRAR FACTURA</button>
+                    
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <script type="module" src="RealizaVenta.js"></script>
+
+    <!--create modal producto agregado--------------------------------------------------->
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal fade" id="agregarProductoModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h5 class="modal-title" id="staticBackdropLabel">Detalle de producto</h5>
+
+                            </div>
+
+                            <div class="modal-body" id="agregarProductoModal">
+                                
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <!--create modal venta exitosa--------------------------------------------------->
+ <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal fade" id="finalizarVentaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h5 class="modal-title" id="staticBackdropLabel">Detalle de producto</h5>
+
+                            </div>
+
+                            <div class="modal-body" id="finalizarVentaModal">
+                                
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+    <!--create modal ver factura------------------------------------------------------>
+     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal fade" id="verFacturaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <h5 class="modal-title" id="staticBackdropLabel">Detalle de producto</h5>
+
+                            </div>
+
+                            <div class="modal-body" id="verFacturaModal">
+                                
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 </body>
 </html>

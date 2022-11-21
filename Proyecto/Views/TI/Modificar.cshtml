@@ -81,30 +81,30 @@
                 <div class="components">
                     <!--add main information-->
 
-                    <label>ID Producto</label>
-                    <input type="text" name="idProducto" id="idProducto" class="form__input">
+                    <div class="form">
+                        <label>PLU/EAN</label>
+                        <input type="text" name="plu" id="plu" class="form__input">
 
-                    <button id="searchData" type="submit" class="btn">BUSCAR</button>
-                    <br>
-                    <label>PLU</label>
-                    <input type="text" name="plu" id="plu" class="form__input">
+                        <label>TIPO DE PRODUCTO</label>
+                            <select id="tipoProducto" class="form__input">
+                                <option value="fresco">Fresco</option>
+                                <option value="noFresco">No Fresco</option>
+                            </select>
+                            
+                        <label>DESCRIPCION</label>
+                        <input type="text" name="descripcion" id="descripcion" class="form__input">
 
-                    <label>EAN</label>
-                    <input type="text" name="ean" id="ean" class="form__input">
+                        <label>PESO</label>
+                        <input type="text" name="peso" id="peso" class="form__input">
 
-                    <label>DESCRIPCION</label>
-                    <input type="text" name="descripcion" id="descripcion" class="form__input">
+                        <label>PRECIO</label>
+                        <input type="text" name="precio" id="precio" class="form__input">
 
-                    <label>PESO</label>
-                    <input type="text" name="peso" id="peso" class="form__input">
+                        <label>CANTIDAD</label>
+                        <input type="text" name="cantidad" id="cantidad" class="form__input">
 
-                    <label>PRECIO</label>
-                    <input type="text" name="precio" id="precio" class="form__input">
-
-                    <label>CANTIDAD</label>
-                    <input type="text" name="cantidad" id="cantidad" class="form__input">
-
-                    <button id="sendData" type="submit" class="btn">MODIFICAR</button>
+                        <button id="sendData" type="submit" class="btn">MODIFICAR</button>
+                    </div>
 
                 </div>
 
