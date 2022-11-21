@@ -1,14 +1,4 @@
-﻿//Declaracion de variables 
-var idProducto = document.getElementById("idProducto");
-var tipoProducto = document.getElementById("tipoProducto");
-var descripcion = document.getElementById("descripcion");
-var peso = document.getElementById("peso");
-var precio = document.getElementById("precio");
-var cantidad = document.getElementById("cantidad");
-
-var modificarProducto = document.getElementById("modificarProducto");
-var modificarProductoRespuesta = document.getElementById("modificarProductoRespuesta");
-
+﻿
 var EstadosDeRespuesta = {
     StatusCode: 0,
     StatusDescription: ''
@@ -54,7 +44,7 @@ function modificarProducto() {
 
 
     if (document.getElementById("tipoProducto").value == "fresco") {
-        fetch(url + "GerenteArea_ModificarProductoFresco", {
+        fetch(url + "TI_ModificarProductoFresco", {
             method: "POST",
             body: JSON.stringify({
                 plu: document.getElementById("idProducto").value,                   //pendiente al nombre que le de Santiago
