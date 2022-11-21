@@ -23,11 +23,10 @@ namespace Proyecto.Controllers
 
             if (isValid(user))
             {
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Consultar","GerenteArea");
             }
             return View(user);
         }
-
 
         private bool isValid(Usuario user)
         {

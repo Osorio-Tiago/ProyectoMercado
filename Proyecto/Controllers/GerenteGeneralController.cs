@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +13,13 @@ namespace Proyecto.Controllers
         public ActionResult Consultar()
         {
             return View();
+        }
+
+        [HttpGet]
+        public JsonResult Consultar_Producto(int id)
+        {
+            ProductoFresco aux = new ProductoFresco();
+            return Json(aux, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

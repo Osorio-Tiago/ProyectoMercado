@@ -9,8 +9,6 @@ namespace Proyecto.Models
     {
         public decimal NumeroCaja { get; set; }
 
-
-
         ProyectoMercadoEntities db = new ProyectoMercadoEntities();
         public List<Caja> ListarCajas()
         {
