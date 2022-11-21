@@ -71,7 +71,7 @@ function modificarProducto() {
         }).then(function (Data) {
             EstadosDeRespuesta = JSON.parse(Data);
             if (EstadosDeRespuesta.StatusDescription == "OK") {
-                document.getElementById("modificarProductoRespuesta").innerHTML = `<div>Producto modificado correctamente/div>`
+                document.getElementById("modificarProductoRespuesta").innerHTML = `<div>Producto modificado correctamente</div>`
                 $('#modificarProducto').modal('show');
             }
             else {
