@@ -70,7 +70,7 @@ function agregarProducto() {
             EstadosDeRespuesta = JSON.parse(Data);
             if (EstadosDeRespuesta.StatusDescription == "OK") {
 
-                document.getElementById("agregarProductoRespuesta").innerHTML = `<div>Producto insertado correctamente/div>`
+                document.getElementById("agregarProductoRespuesta").innerHTML = `<div>Producto insertado correctamente</div>`
                 $('#agregarProducto').modal('show');
             }
             else {

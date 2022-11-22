@@ -1,11 +1,10 @@
-﻿//Declaracion de variables 
-var idProducto = document.getElementById("idProducto");
-var tipoProducto = document.getElementById("tipoProducto");
-var modalHead = document.getElementById("eliminarProducto");
-var modalBody = document.getElementById("eliminarProductoRespuesta") 
-
-//Objeto para leer posibles respuestas del servidor
+﻿//Objeto para leer posibles respuestas del servidor
 var url = "/TI/"
+
+var EstadosDeRespuesta = {
+    StatusCode: 0,
+    StatusDescription: ''
+};
 
 //funcion principal
 function eliminarProducto() {
@@ -15,8 +14,9 @@ function eliminarProducto() {
         fetch(url + "TI_EliminarProductoNoFresco", {
             method: "POST",
             body: JSON.stringify({
-                IdProducto: document.getElementById("idproducto").value  
-              
+                Ean: document.getElementById("idProducto").value,
+       
+
             }),
             headers: {
                 "Accept": "application/json",
@@ -30,25 +30,25 @@ function eliminarProducto() {
         }).then(function (Data) {
             EstadosDeRespuesta = JSON.parse(Data);
             if (EstadosDeRespuesta.StatusDescription == "OK") {
-                document.getElementById("eliminarProductoRespuesta").innerHTML = `<div>Producto eliminado correctamente/div>`
-                $('#respuesta').modal('show');
+                document.getElementById("eliminarProductoRespuesta").innerHTML = `<div>Producto eliminado correctamente</div>`
+                $('#eliminarProducto').modal('show');
             }
             else {
                 document.getElementById("eliminarProductoRespuesta").innerHTML = `<div>Error al eliminar el producto</div>`
 
-                $('#respuesta').modal('show');
+                $('#eliminarProducto').modal('show');
             }
 
         })
     
     }
-
+    
      //validacion producto  fresco
-    if ((document.getElementById("tipoProducto").value == "fresco") {
+    if (document.getElementById("tipoProducto").value == "fresco") {
         fetch(url + "TI_EliminarProductoFresco", {
             method: "POST",
             body: JSON.stringify({
-                IdProducto: document.getElementById("idproducto").value
+                Plu: document.getElementById("idProducto").value
                 
             }),
             headers: {
@@ -63,13 +63,13 @@ function eliminarProducto() {
         }).then(function (Data) {
             EstadosDeRespuesta = JSON.parse(Data);
             if (EstadosDeRespuesta.StatusDescription == "OK") {
-                document.getElementById("eliminarProductoRespuesta").innerHTML = `<div>Producto eliminado correctamente/div>`
-                $('#respuesta').modal('show');
+                document.getElementById("eliminarProductoRespuesta").innerHTML = `<div>Producto eliminado correctamente</div>`
+                $('#eliminarProducto').modal('show');
             }
             else {
                 document.getElementById("eliminarProductoRespuesta").innerHTML = `<div>Error al eliminar el producto</div>`
 
-                $('#respuesta').modal('show');
+                $('#eliminarProducto').modal('show');
             }
 
         })

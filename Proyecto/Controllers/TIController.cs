@@ -58,12 +58,12 @@ namespace Proyecto.Controllers
                 {
                     while (reader.Read())
                     {
-                       resultado += "[USUARIO = "+ reader.GetString(1) + " ";
-                       resultado += "TABLA AFECTADA = " + reader.GetString(6)+ " ";
-                       resultado += "ACCION = " + reader.GetString(8)+ " ";
-                       resultado += "HORA = " + reader.GetString(31) + " ";
-                       resultado += "VALORES ENVIADOS = " + reader.GetString(39) + "]               \n";
-                       resultado += "-----------------------------------------------------------------";
+                       resultado += "USUARIO = "+ reader.GetString(1) + " \n";
+                       resultado += "TABLA AFECTADA = " + reader.GetString(6)+ " \n";
+                       resultado += "ACCION = " + reader.GetString(8)+ " \n";
+                       resultado += "HORA = " + reader.GetString(31) + " \n";
+                       resultado += "VALORES ENVIADOS = " + reader.GetString(39) + "]\n\n\n";
+                       
                     }
                 }
                 finally
@@ -172,8 +172,49 @@ namespace Proyecto.Controllers
         [HttpGet]
         public ActionResult ConsultarProductoFresco()
         {
+            return View();
+        }
 
-            return Json(new HttpStatusCodeResult(HttpStatusCode.OK, "OK"));
+
+        [HttpPost]
+        public ActionResult TI_EliminarProductoFresco(ProductoFresco productoFresco)
+        {
+            try
+            {
+                OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = " + userSession.Password + " ; USER ID = " + userSession.Username);
+                conn.Open();
+                string consulta = "Delete mercado.ProductoFresco where PLU = " + productoFresco.Plu;
+                OracleCommand comando = new OracleCommand(consulta, conn);
+
+                comando.ExecuteNonQuery();
+
+                return Json(new HttpStatusCodeResult(HttpStatusCode.OK, "OK"));
+            }
+            catch (Exception e)
+            {
+                return Json(new HttpStatusCodeResult(HttpStatusCode.BadRequest));
+            }
+        }
+
+        [HttpPost]
+        public ActionResult TI_EliminarProductoNoFresco(ProductoNoFresco productoNoFresco)
+        {
+            try
+            {
+                OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = " + userSession.Password + " ; USER ID = " + userSession.Username);
+                conn.Open();
+
+                string consulta = "Delete mercado.ProductoNoFresco where EAN = '" + productoNoFresco.Ean+"'";
+                OracleCommand comando = new OracleCommand(consulta, conn);
+
+                comando.ExecuteNonQuery();
+
+                return Json(new HttpStatusCodeResult(HttpStatusCode.OK, "OK"));
+            }
+            catch (Exception e)
+            {
+                return Json(new HttpStatusCodeResult(HttpStatusCode.BadRequest));
+            }
         }
     }
 }
