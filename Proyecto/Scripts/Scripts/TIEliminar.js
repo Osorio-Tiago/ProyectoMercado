@@ -15,8 +15,6 @@ function eliminarProducto() {
             method: "POST",
             body: JSON.stringify({
                 Ean: document.getElementById("idProducto").value,
-       
-
             }),
             headers: {
                 "Accept": "application/json",

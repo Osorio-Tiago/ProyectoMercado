@@ -7,13 +7,13 @@ var EstadosDeRespuesta = {
 
 
 function eliminarProducto() {
-  
+
+    //validacion producto no fresco
     if (document.getElementById("tipoProducto").value == "noFresco") {
         fetch(url + "GerenteGeneral_EliminarProductoNoFresco", {
             method: "POST",
             body: JSON.stringify({
-                IdProducto: document.getElementById("idproducto").value  
-              
+                Ean: document.getElementById("idProducto").value,
             }),
             headers: {
                 "Accept": "application/json",
@@ -27,7 +27,7 @@ function eliminarProducto() {
         }).then(function (Data) {
             EstadosDeRespuesta = JSON.parse(Data);
             if (EstadosDeRespuesta.StatusDescription == "OK") {
-                document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto eliminado correctamente/div>`
+                document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto eliminado correctamente</div>`
                 $('#respuesta').modal('show');
             }
             else {
@@ -37,14 +37,16 @@ function eliminarProducto() {
             }
 
         })
-    
+
     }
-    if ((document.getElementById("tipoProducto").value == "fresco") {
+
+    //validacion producto  fresco
+    if (document.getElementById("tipoProducto").value == "fresco") {
         fetch(url + "GerenteGeneral_EliminarProductoFresco", {
             method: "POST",
             body: JSON.stringify({
-                IdProducto: document.getElementById("idproducto").value
-                
+                Plu: document.getElementById("idProducto").value
+
             }),
             headers: {
                 "Accept": "application/json",
@@ -58,7 +60,7 @@ function eliminarProducto() {
         }).then(function (Data) {
             EstadosDeRespuesta = JSON.parse(Data);
             if (EstadosDeRespuesta.StatusDescription == "OK") {
-                document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto eliminado correctamente/div>`
+                document.getElementById("mensajeRespuesta").innerHTML = `<div>Producto eliminado correctamente</div>`
                 $('#respuesta').modal('show');
             }
             else {
@@ -69,6 +71,7 @@ function eliminarProducto() {
 
         })
     }
+
 }
                        
 
