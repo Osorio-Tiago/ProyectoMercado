@@ -9,11 +9,18 @@ using System.Web.Mvc;
 
 namespace Proyecto.Controllers
 {
+    
     public class GerenteGeneralController : Controller
     {
+        static Usuario userSession = null;
+
         [HttpGet]
-        public ActionResult Consultar()
+        public ActionResult Consultar(Usuario user)
         {
+            if (userSession == null && user != null)
+            {
+                userSession = user;
+            }
             return View();
         }
 
@@ -36,16 +43,16 @@ namespace Proyecto.Controllers
             return View();
         }
 
-        OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = mercado ; USER ID = MERCADO");
         [HttpPost]
         public ActionResult GerenteGeneral_InsertarProductoNoFresco(ProductoNoFresco productoNoFresco)
         {
 
             try
             {
+                OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = " + userSession.Password + " ; USER ID = " + userSession.Username);
                 conn.Open();
-           
-                string consulta = "insert into ProductoNoFresco(EAN, descripcion, cantidad, precio, area) values ('" + productoNoFresco.Ean + "','" + productoNoFresco.Descripcion + "'," + productoNoFresco.Cantidad + "," + productoNoFresco.Precio + ",'" + productoNoFresco.Area + "')";
+
+                string consulta = "insert into mercado.ProductoNoFresco(EAN, descripcion, cantidad, precio, area) values ('" + productoNoFresco.Ean + "','" + productoNoFresco.Descripcion + "'," + productoNoFresco.Cantidad + "," + productoNoFresco.Precio + ",'" + productoNoFresco.Area + "')";
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
                 comando.ExecuteNonQuery();
@@ -64,8 +71,9 @@ namespace Proyecto.Controllers
 
             try
             {
+                OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = " + userSession.Password + " ; USER ID = " + userSession.Username);
                 conn.Open();
-                string consulta = "insert into ProductoFresco(PLU, peso, descripcion, precio) values (" + productoFresco.Plu + "," + productoFresco.Peso + ",'" + productoFresco.Descripcion + "'," + productoFresco.Precio + ")";
+                string consulta = "insert into mercado.ProductoFresco(PLU, peso, descripcion, precio) values (" + productoFresco.Plu + "," + productoFresco.Peso + ",'" + productoFresco.Descripcion + "'," + productoFresco.Precio + ")";
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
                 comando.ExecuteNonQuery();
@@ -82,8 +90,9 @@ namespace Proyecto.Controllers
         {
             try
             {
+                OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = " + userSession.Password + " ; USER ID = " + userSession.Username);
                 conn.Open();
-                string consulta = "update ProductoFresco set peso = " + productoFresco.Peso + ", descripcion = '" + productoFresco.Descripcion + "', precio = " + productoFresco.Precio + "where PLU = " + productoFresco.Plu;
+                string consulta = "update mercado.ProductoFresco set peso = " + productoFresco.Peso + ", descripcion = '" + productoFresco.Descripcion + "', precio = " + productoFresco.Precio + "where PLU = " + productoFresco.Plu;
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
                 comando.ExecuteNonQuery();
@@ -101,9 +110,10 @@ namespace Proyecto.Controllers
         {
             try
             {
+                OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = " + userSession.Password + " ; USER ID = " + userSession.Username);
                 conn.Open();
-         
-                string consulta = "update ProductoNoFresco set descripcion = " + productoNoFresco.Descripcion + ", precio = " + productoNoFresco.Precio + ", cantidad = " + productoNoFresco.Cantidad + ", area = " + productoNoFresco.Area + "where EAN = " + productoNoFresco.Ean; ;
+
+                string consulta = "update mercado.ProductoNoFresco set descripcion = '" + productoNoFresco.Descripcion + "', precio = " + productoNoFresco.Precio + ", cantidad = " + productoNoFresco.Cantidad + ", area = '" + productoNoFresco.Area + "' where EAN = '" + productoNoFresco.Ean+"'";
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
                 comando.ExecuteNonQuery();

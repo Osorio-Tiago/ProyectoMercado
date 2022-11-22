@@ -11,12 +11,12 @@ var url = "/TI/"
 function consultarProducto() {
     $('#consultarInformacion').modal('show');
      
-    fetch(url + "TI_Consultar") //Nombre pendiente a ver cual le pone Santiago
+    fetch(url + "TI_ConsultarProductoFresco") //Nombre pendiente a ver cual le pone Santiago
          .then((respuesta) => {
              return respuesta.json();
          }).then((datos) => {
-             var producto = '';
+             var producto = datos;
              //En la variable producto se pone la información en lenguaje html que se mostrará en el modal de Bootstrap
-             document.getElementById("listaMarcas").innerHTML = producto
+            // document.getElementById("listaMarcas").innerHTML = producto
          });
 }

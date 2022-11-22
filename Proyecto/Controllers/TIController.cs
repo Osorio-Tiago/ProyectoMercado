@@ -11,11 +11,15 @@ namespace Proyecto.Controllers
 {
     public class TIController : Controller
     {
-      
+        static Usuario userSession = null;
 
         [HttpGet]
-        public ActionResult Consultar()
+        public ActionResult Consultar(Usuario user)
         {
+            if(userSession == null && user != null)
+            {
+                userSession = user;
+            }
             return View();
         }
 
@@ -31,17 +35,63 @@ namespace Proyecto.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Eliminar()
+        {
+            return View();
+        }
 
-        OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = mercado ; USER ID = MERCADO");
+        [HttpGet]
+        public ActionResult Bitacora()
+        {
+            string resultado = "";
+            try
+            {
+                OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = " + userSession.Password + " ; USER ID = " + userSession.Username);
+                conn.Open();
+               
+                string consulta = "select * FROM DBA_AUDIT_TRAIL where owner = 'MERCADO'";
+                OracleCommand comando = new OracleCommand(consulta, conn);
+                OracleDataReader reader = comando.ExecuteReader();
+
+                try
+                {
+                    while (reader.Read())
+                    {
+                       resultado += "[USUARIO = "+ reader.GetString(1) + " ";
+                       resultado += "TABLA AFECTADA = " + reader.GetString(6)+ " ";
+                       resultado += "ACCION = " + reader.GetString(8)+ " ";
+                       resultado += "HORA = " + reader.GetString(31) + " ";
+                       resultado += "VALORES ENVIADOS = " + reader.GetString(39) + "]               \n";
+                       resultado += "-----------------------------------------------------------------";
+                    }
+                }
+                finally
+                {
+                    // always call Close when done reading.
+                    reader.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                return Json(new HttpStatusCodeResult(HttpStatusCode.BadRequest));
+                throw;
+            }
+
+            ViewBag.bitcoras = resultado;
+            return View();
+        }
+
         [HttpPost]
         public ActionResult TI_InsertarProductoNoFresco(ProductoNoFresco productoNoFresco)
         {
 
             try
             {
+                OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = " + userSession.Password + " ; USER ID = " + userSession.Username);
                 conn.Open();
               
-                string consulta = "insert into ProductoNoFresco(EAN, descripcion, cantidad, precio, area) values ('" + productoNoFresco.Ean + "','" + productoNoFresco.Descripcion + "'," + productoNoFresco.Cantidad + "," + productoNoFresco.Precio + ",'" + productoNoFresco.Area + "')";
+                string consulta = "insert into mercado.ProductoNoFresco(EAN, descripcion, cantidad, precio, area) values ('" + productoNoFresco.Ean + "','" + productoNoFresco.Descripcion + "'," + productoNoFresco.Cantidad + "," + productoNoFresco.Precio + ",'" + productoNoFresco.Area + "')";
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
                 comando.ExecuteNonQuery();
@@ -60,8 +110,9 @@ namespace Proyecto.Controllers
 
             try
             {
+                OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = " + userSession.Password + " ; USER ID = " + userSession.Username);
                 conn.Open();
-                string consulta = "insert into ProductoFresco(PLU, peso, descripcion, precio) values ("+ productoFresco.Plu+","+ productoFresco.Peso+",'"+ productoFresco.Descripcion+"',"+productoFresco.Precio+")";
+                string consulta = "insert into mercado.ProductoFresco(PLU, peso, descripcion, precio) values (" + productoFresco.Plu+","+ productoFresco.Peso+",'"+ productoFresco.Descripcion+"',"+productoFresco.Precio+")";
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
                 comando.ExecuteNonQuery();
@@ -80,8 +131,9 @@ namespace Proyecto.Controllers
         {
             try
             {
+                OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = " + userSession.Password + " ; USER ID = " + userSession.Username);
                 conn.Open();
-                string consulta = "update ProductoFresco set peso = "+productoFresco.Peso+", descripcion = '"+productoFresco.Descripcion+"', precio = "+productoFresco.Precio+"where PLU = "+productoFresco.Plu;
+                string consulta = "update mercado.ProductoFresco set peso = " + productoFresco.Peso+", descripcion = '"+productoFresco.Descripcion+"', precio = "+productoFresco.Precio+"where PLU = "+productoFresco.Plu;
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
                 comando.ExecuteNonQuery();
@@ -99,9 +151,10 @@ namespace Proyecto.Controllers
         {
             try
             {
+                OracleConnection conn = new OracleConnection("DATA SOURCE = localhost:1522/xe ; PASSWORD = " + userSession.Password + " ; USER ID = " + userSession.Username);
                 conn.Open();
         
-                string consulta = "update ProductoNoFresco set descripcion = "+productoNoFresco.Descripcion+", precio = "+productoNoFresco.Precio+", cantidad = "+productoNoFresco.Cantidad+", area = "+productoNoFresco.Area+"where EAN = "+productoNoFresco.Ean; ;
+                string consulta = "update mercado.ProductoNoFresco set descripcion = " + productoNoFresco.Descripcion+", precio = "+productoNoFresco.Precio+", cantidad = "+productoNoFresco.Cantidad+", area = "+productoNoFresco.Area+"where EAN = "+productoNoFresco.Ean; ;
                 OracleCommand comando = new OracleCommand(consulta, conn);
 
                 comando.ExecuteNonQuery();
@@ -114,16 +167,13 @@ namespace Proyecto.Controllers
             }
         }
 
-        [HttpGet]
-        public ActionResult Eliminar()
-        {
-            return View();
-        }
+
 
         [HttpGet]
-        public ActionResult Bitacora()
+        public ActionResult ConsultarProductoFresco()
         {
-            return View();
+
+            return Json(new HttpStatusCodeResult(HttpStatusCode.OK, "OK"));
         }
     }
 }

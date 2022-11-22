@@ -32,11 +32,11 @@ namespace Proyecto.Controllers
                 }
                 else if (user.Rol == "SISTEMAS")
                 {
-                    return RedirectToAction("Consultar", "TI");
+                    return RedirectToAction("Consultar", "TI", user);
                 }
                 else if(user.Rol == "GERENTEGENERAL")
                 {
-                    return RedirectToAction("Consultar", "GerenteGeneral");
+                    return RedirectToAction("Consultar", "GerenteGeneral", user);
                 }
                 else
                 {
